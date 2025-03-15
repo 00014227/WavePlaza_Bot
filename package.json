@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "@supabase/supabase-js": "^2.49.1",
+    "dotenv": "^16.4.7",
+    "telegraf": "^4.16.3",
+    "telegraf-calendar-telegram": "^2.0.2",
+    "telegraf-time-picker-with-minute": "^1.0.10"
+  },
+  "name": "telegram-bot-waveplaza",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}

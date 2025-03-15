@@ -1,0 +1,72 @@
+{
+    "ru": {
+      "welcome": "Введите номер телефона",
+      "share_phone": "📞 Поделиться номером",
+      "thank_you": "Спасибо! Мы получили ваш номер телефона: ",
+      "choose_zone": "Пожалуйста, выберите зону:",
+      "choose_table": "Вы выбрали {zone}. Пожалуйста, выберите стол:",
+      "choose_date": "Вы выбрали {table}. Пожалуйста, выберите дату бронирования:",
+      "choose_time": "📆 Вы выбрали {date}. Пожалуйста, введите предпочтительное время (ЧЧ:ММ):",
+      "confirmation": "✅ Вы выбрали {time} для бронирования.",
+      "weekdays": ["Пн", "Вт", "Ср", "Чт", "Пт", "Сб", "Вс"],
+      "months": ["Январь", "Февраль", "Март", "Апрель", "Май", "Июнь", "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь"],
+      "restart": "Отменить",
+      "confirm": "Подтвердить",
+      "cancel": "Отменить",
+      "reserve_again": "Забронировать еще",
+      "final_confirmation": "Спасибо наши администраторы свяжутся с вами для подтверждения",
+      "zones": {
+        "premium": "Премиум зона",
+        "american": "Американский пул",
+        "usual": "Обычная зона",
+        "vip": "VIP зона"
+
+      },
+      "tables": {
+        "Table 1": "Стол 1",
+        "Table 2": "Стол 2",
+        "Table 3": "Стол 3",
+        "Table 4": "Стол 4",
+        "Table 5": "Стол 5",
+        "Table 6": "Стол 6",
+        "Table 7": "Стол 7",
+        "Table 8": "Стол 8",
+        "Table 9": "Стол 9"
+      }
+    },
+    "uz": {
+      "welcome": "Raqamingizni kiriting",
+      "share_phone": "📞 Raqamni ulashish",
+      "thank_you": "Rahmat! Biz sizning telefon raqamingizni oldik: ",
+      "choose_zone": "Iltimos, hududni tanlang:",
+      "choose_table": "Siz {zone} tanladingiz. Iltimos, stolni tanlang:",
+      "choose_date": "Siz {table} tanladingiz. Iltimos, bron qilish sanasini tanlang:",
+      "choose_time": "📆 Siz {date} tanladingiz. Iltimos, tanlangan vaqtni kiriting (HH:MM):",
+      "confirmation": "✅ Siz {time} uchun bron qildingiz.",
+      "weekdays": ["Du", "Se", "Ch", "Pa", "Ju", "Sha", "Ya"],
+      "months": ["Yanvar", "Fevral", "Mart", "Aprel", "May", "Iyun", "Iyul", "Avgust", "Sentabr", "Oktabr", "Noyabr", "Dekabr"],
+      "restart": "Bekor qilish",
+      "confirm": "Tastiqlash",
+      "cancel": "Bekor qilish",
+      "reserve_again": "Stol band qilish",
+      "final_confirmation": "Rahmat, bizning administratorlarimiz tasdiqlash uchun siz bilan bog'lanadi",
+      "zones": {
+        "premium": "Premium zona",
+        "american": "Amerika pool",
+        "usual": "Oddiy zona",
+        "vip": "VIP zona"
+      },
+      "tables": {
+        "Table 1": "Stol 1",
+        "Table 2": "Stol 2",
+        "Table 3": "Stol 3",
+        "Table 4": "Stol 4",
+        "Table 5": "Stol 5",
+        "Table 6": "Stol 6",
+        "Table 7": "Stol 7",
+        "Table 8": "Stol 8",
+        "Table 9": "Stol 9"
+      }
+    }
+  }
+  
