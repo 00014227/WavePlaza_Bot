@@ -14,7 +14,7 @@ const supabase  = createClient(supabaseUrl, supabaseKey)
 const zones = {
     premium: ['Table 1', 'Table 2', 'Table 3'],
     american: ['Table 1', 'Table 2', 'Table 3', 'Table 4'],
-    usual: ['Table 1', 'Table 2', 'Table 3', 'Table 4'],
+    usual: ['Table 1', 'Table 2', 'Table 3', 'Table 4', 'Table 5'],
     vip: ['Table 1']
 };
 
@@ -218,7 +218,8 @@ bot.action('cancel', (ctx) => {
       Markup.keyboard([
         [messages[lang].zones.premium],
         [messages[lang].zones.american],
-        [messages[lang].zones.usual]
+        [messages[lang].zones.usual],
+        [messages[lang].zones.vip]
       ])
       .resize()
       .oneTime()
