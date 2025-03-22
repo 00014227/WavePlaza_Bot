@@ -33,6 +33,33 @@ bot.start((ctx) => {
     );
 });
 
+supabase
+  .channel('public:reservations')
+  .on('postgres_changes', { event: 'UPDATE', schema: 'public', table: 'reservations' }, async (payload) => {
+      const { user_id, status } = payload.new;
+
+      // Retrieve the user's preferred language (default to Russian if not found)
+      const lang = userLanguage[user_id] || 'ru';
+
+      let message;
+      if (status === 'approved') {
+          message = messages[lang].status_approved;
+      } else if (status === 'canceled') {
+          message = messages[lang].status_canceled;
+      }
+
+      if (message) {
+          try {
+              await bot.telegram.sendMessage(user_id, message, { parse_mode: 'Markdown' });
+          } catch (error) {
+              console.error("Failed to send message to user:", error);
+          }
+      }
+  })
+  .subscribe();
+
+
+
 bot.hears(['🇷🇺 Russian', '🇺🇿 Uzbek'], (ctx) => {
     const lang = ctx.message.text.includes('Russian') ? 'ru' : 'uz';
     userLanguage[ctx.from.id] = lang;
@@ -53,7 +80,6 @@ bot.on('contact', (ctx) => {
     const phoneNumber = ctx.message.contact.phone_number;
     const lang = userLanguage[ctx.from.id] || 'ru';
 
-    // ✅ Гарантируем, что объект существует
     if (!userSelections[ctx.from.id]) {
         userSelections[ctx.from.id] = {};
     }
@@ -75,8 +101,6 @@ bot.on('contact', (ctx) => {
     );
 });
 
-
-// Handle zone selection
 bot.hears([].concat(
     Object.values(messages['ru'].zones),
     Object.values(messages['uz'].zones)
@@ -103,15 +127,11 @@ bot.hears([].concat(
     );
 });
 
-// Handle table selection
 bot.action(/select_(.+)/, (ctx) => {
     const selectedTable = ctx.match[1];
     const lang = userLanguage[ctx.from.id] || 'ru';
     userSelections[ctx.from.id].table = messages[lang].tables[selectedTable];
 
-    // ctx.replyWithMarkdown('📅 ' + messages[lang].choose_date.replace('{table}', userSelections[ctx.from.id].table));
-
-    // Create a calendar for this user
     const calendar = new Calendar(bot, {
         startWeekDay: 1,
         weekDayNames: messages[lang].weekdays,
@@ -126,7 +146,6 @@ bot.action(/select_(.+)/, (ctx) => {
     });
 });
 
-// Handle manual time input
 bot.hears(/^\d{1,2}:\d{2}$/, (ctx) => {
     const selectedTime = ctx.message.text;
     const lang = userLanguage[ctx.from.id] || 'ru';
@@ -140,8 +159,6 @@ bot.hears(/^\d{1,2}:\d{2}$/, (ctx) => {
     );
 });
 
-// Handle confirmation
-// Handle confirmation
 bot.action('confirm', async (ctx) => {
     const lang = userLanguage[ctx.from.id] || 'ru';
     const booking = userSelections[ctx.from.id];
@@ -150,8 +167,7 @@ bot.action('confirm', async (ctx) => {
         return ctx.reply(messages[lang].error);
     }
 
-    // Save to Supabase
-    const { data, error } = await supabase
+    const { error } = await supabase
         .from('reservations')
         .insert([
             {
@@ -170,13 +186,6 @@ bot.action('confirm', async (ctx) => {
         return ctx.reply(messages[lang].error);
     }
 
-    // Send to another Telegram bot (admin bot)
-    const adminChatId = process.env.ADMIN_CHAT_ID;
-    const messageToAdmin = `📅 Новый заказ:\n👤 Телефон: ${booking.phone}\n📍 Зона: ${booking.zone}\n🎱 Стол: ${booking.table}\n🗓 Дата: ${booking.date}\n⏰ Время: ${booking.time}`;
-    
-    await ctx.telegram.sendMessage(adminChatId, messageToAdmin);
-
-    // Show final message + "Reserve Again" button
     ctx.reply(
         messages[lang].final_confirmation,
         Markup.inlineKeyboard([
@@ -185,14 +194,9 @@ bot.action('confirm', async (ctx) => {
     );
 });
 
-// Handle "Reserve Again" button click
 bot.action('reserve_again', (ctx) => {
     const lang = userLanguage[ctx.from.id] || 'ru';
-
-    // Reset user selections
     delete userSelections[ctx.from.id];
-
-    // Restart the process from asking for phone number
     ctx.reply(messages[lang].welcome);
     ctx.reply(
         messages[lang].welcome,
@@ -204,13 +208,9 @@ bot.action('reserve_again', (ctx) => {
     );
 });
 
-
-
-// Handle cancellation
 bot.action('cancel', (ctx) => {
     const lang = userLanguage[ctx.from.id] || 'ru';
-    userSelections[ctx.from.id] = {}; // Reset selections
-
+    userSelections[ctx.from.id] = {}; 
     ctx.reply(messages[lang].restart);
 
     ctx.reply(
@@ -226,6 +226,5 @@ bot.action('cancel', (ctx) => {
     );
 });
 
-// Launch the bot
 bot.launch();
 console.log('Bot is up and running...');
