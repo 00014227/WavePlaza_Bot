@@ -23,15 +23,23 @@ const userLanguage = {};
 const userSelections = {}; // Store user selections (zone, table, date, time)
 
 bot.start((ctx) => {
+    // ✅ Check if chat is private before proceeding
+    if (ctx.chat.type !== 'private') {
+        return ctx.reply("⚠️ Пожалуйста, отправьте мне личное сообщение, чтобы начать: [@Wave_Plaza_bot](https://t.me/Wave_Plaza_bot) \n\n" +
+                         "⚠️ Iltimos, menga shaxsiy xabar yuboring: [@Wave_Plaza_bot](https://t.me/Wave_Plaza_bot)", 
+                         { parse_mode: "Markdown" });
+    }
+
     ctx.reply(
-      "Пожалуйста выберите / Iltimos, tilni tanlang",
-      Markup.keyboard([
-        ['🇷🇺 Russian', '🇺🇿 Uzbek']
-      ])
-      .resize()
-      .oneTime()
+        "Пожалуйста выберите / Iltimos, tilni tanlang",
+        Markup.keyboard([
+            ['🇷🇺 Russian', '🇺🇿 Uzbek']
+        ])
+        .resize()
+        .oneTime()
     );
 });
+
 
 supabase
   .channel('public:reservations')

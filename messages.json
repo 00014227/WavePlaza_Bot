@@ -17,6 +17,7 @@
       "final_confirmation": "Спасибо наши администраторы свяжутся с вами для подтверждения",
       "status_approved": "✅ Ваше бронирование подтверждено! Мы с нетерпением ждем вас.",
       "status_canceled": "❌ Ваше бронирование отменено. Пожалуйста, выберите другое время или другой стол.",
+      "please_dm_bot": "Пожалуйста, отправьте мне личное сообщение, чтобы поделиться номером телефона.",
       "zones": {
         "premium": "Премиум зона",
         "american": "Американский пул",
@@ -54,6 +55,7 @@
       "final_confirmation": "Rahmat bizning administratorlarimiz tasdiqlash uchun siz bilan boglanadi",
       "status_approved": "✅ Buyurtmangiz tasdiqlandi! Sizni intiqlik bilan kutib qolamiz.",
       "status_canceled": "❌ Buyurtmangiz bekor qilindi. Iltimos, boshqa vaqt yoki boshqa stol tanlang.",
+      "please_dm_bot": "Пожалуйста, отправьте мне личное сообщение, чтобы поделиться номером телефона.",
       "zones": {
         "premium": "Premium zona",
         "american": "Amerika pool",
